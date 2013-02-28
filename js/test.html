@@ -1,0 +1,86 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<title>def/inf?re</title>
+
+		<script type="text/javascript" src="/Users/MK/Web/Scripts/jquery-1.8.3.js"></script>
+		<script type="text/javascript" src="/jQuery_csv.js"></script>
+		<script type="text/javascript" src="/enchant.js"></script>
+		<script type="text/javascript" src="/highcharts.js"></script>
+		<script type="text/javascript" src="/exporting.js"></script>
+		<script type="text/javascript">
+$(function () {
+    var chart;
+    $(document).ready(function() {
+    $.get('/Users/MK/Web/data/corecore_cpi_71.csv',function(data){
+		var csv = $.csv()(data);
+	$.get('/Users/MK/Web/data/71_mnystck_m2.csv',function(data1){
+		var mnystk = $.csv()(data1);
+	$.get('/Users/MK/Web/data/70_fceh_v2.csv',function(data2){
+		var fceh = $.csv()(data2);
+		chart = new Highcharts.Chart({
+            chart: {
+                renderTo: 'container',
+                type: 'line',
+                marginRight: 130,
+                marginBottom: 25
+            },
+            title: {
+                text: 'インフレ？デフレ？',
+                x: -20 //center
+            },
+            subtitle: {
+                text: 'マネーストックM２、corecoreCPI、家計最終消費支出　1971年〜',
+                x: -20
+            },
+            xAxis: {
+                categories: [csv[0]]
+            },
+            yAxis: {
+                title: {
+                    text: '%'
+                },
+                plotLines: [{
+                    value: 0,
+                    width: 1,
+                    color: '#808080'
+                }]
+            },
+            tooltip: {
+                formatter: function() {
+                        return '<b>'+ this.series.name +'</b><br/>'+
+                        this.x +': '+ this.y +'%';
+                }
+            },
+            legend: {
+                layout: 'vertical',
+                align: 'right',
+                verticalAlign: 'top',
+                x: -10,
+                y: 100,
+                borderWidth: 0
+            },
+            series: [{
+                name: 'corecoreCPI',
+                data: [csv[1]]
+            }, {
+                name: 'money stock',
+                data: [mnystk[1]]
+            }, {
+                name: 'fceh',
+                data: [fceh[1]]
+            }]
+       })})}) });
+        
+	})
+		</script>
+	</head>
+	<body>
+<script src="http://code.highcharts.com/highcharts.js"></script>
+<script src="http://code.highcharts.com/modules/exporting.js"></script>
+
+<div id="container" style="min-width: 400px; height: 400px; margin: 0 auto"></div>
+
+	</body>
+</html>
