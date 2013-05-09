@@ -21,18 +21,27 @@ var options = {
  },
  legend: {
     layout: 'vertical',
-    align: 'left',
+    align: 'right',
     verticalAlign: 'top',
-    x: 900,
     y: 150,
     floating: true,
     borderWidth: 1,
     backgroundColor: '#FFFFFF'
  },
  xAxis: {
+  plotBands: [{
+	    		from: 00,
+	    		to: 02,
+	    		color: 'yellow',
+	    		label: {
+	    			text: 'Comfort zone',
+	    			x: 12
+	    		}
+	    	}],
  categories: []
  },
  yAxis: {
+
  title: {
  style: {
  color: 'skyblue'
@@ -55,7 +64,7 @@ var options = {
  series: []
  }
 var flag;
- $.get('../data/gdpp.csv', function(data) {
+ $.get('../data/gdp.csv', function(data) {
  // Split the lines
  var lines = data.split('\n');
  

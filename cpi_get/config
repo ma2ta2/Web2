@@ -1,0 +1,6 @@
+# ~/.ssh/config
+st csv_take
+User ec2-user
+HostName alpha.hoge.com
+Port 22
+IdentityFile ~/.ssh/csv_take_key.pem

@@ -12,7 +12,7 @@ var options = {
  },
  title: {
  style: {
- color: 'skyblue'
+ color: 'DeepSkyBlue'
  },
  text: '失業率'
  },
@@ -23,7 +23,7 @@ var options = {
     layout: 'vertical',
     align: 'left',
     verticalAlign: 'top',
-    x: 900,
+    x: 1070,
     y: 150,
     floating: true,
     borderWidth: 1,
@@ -35,7 +35,7 @@ var options = {
  yAxis: {
  title: {
  style: {
- color: 'skyblue'
+ color: 'DeepSkyBlue'
  },
  text: '%'
  },
